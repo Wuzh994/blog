@@ -1,8 +1,11 @@
+import fs from 'fs'
+import { join } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
+import matter from 'gray-matter'
 import Markdown from 'vite-plugin-vue-markdown'
 import anchor from 'markdown-it-anchor'
 import prism from 'markdown-it-prism'
@@ -39,6 +42,13 @@ export default defineConfig({
     Pages({
       extensions: ['md'],
       dirs: 'src/articles',
+      extendRoute(route) {
+        const path = join(__dirname, route.component)
+        const md = fs.readFileSync(path)
+        const { data } = matter(md)
+        route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+        return route
+      },
     }),
   ],
 })

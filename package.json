@@ -21,6 +21,7 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "@wzh994/eslint-config": "^0.1.1",
     "eslint": "^8.23.0",
+    "gray-matter": "^4.0.3",
     "markdown-it-anchor": "^8.6.4",
     "markdown-it-prism": "^2.3.0",
     "markdown-it-table-of-contents": "^0.6.0",
